@@ -28,5 +28,7 @@ webpack是现代Javascript应用程序的静态模块打包器。当webpack打�
 11. ```this.runWebpack()```方法,执行```this.createCompiler()``` 获取到webpack函数中的compiler
 12. ```this.createCompiler()```方法, 执行```this.loadConfig()```获取webpack.config.js文件中的配置项
 13. ``this.createCompiler()```方法, 执行```this.webpack()```并且返回compiler
+14. 在执行```this.webpack()```之前，通过调用```this.loadConfig()```方法来获取到配置文件
+15. ```this.loadConfig()```方法，先遍历所有可能存在的配置文件，找到第一个存在的配置文件，然后调用```loadConfigByPath()```来获取具体的配置内容
 
 ## 4. Webpack实战

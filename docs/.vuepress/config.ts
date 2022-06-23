@@ -29,6 +29,10 @@ export default defineUserConfig({
         link: "/engine",
       },
       {
+        text: "npm应用",
+        link: "/npm",
+      },
+      {
         text: "npm包",
         link: "/third-part",
       },
