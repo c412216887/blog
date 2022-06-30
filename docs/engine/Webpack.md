@@ -30,5 +30,34 @@ webpack是现代Javascript应用程序的静态模块打包器。当webpack打�
 13. ``this.createCompiler()```方法, 执行```this.webpack()```并且返回compiler
 14. 在执行```this.webpack()```之前，通过调用```this.loadConfig()```方法来获取到配置文件
 15. ```this.loadConfig()```方法，先遍历所有可能存在的配置文件，找到第一个存在的配置文件，然后调用```loadConfigByPath()```来获取具体的配置内容
+- 在```this.creatComplie()```方法中，同时调用```this.buildConfig()```将命令行中的配置项替换配置文件中的配置项。同时，在plugin的最前面使用```unshift```插入，**CLIPlugin**(dummy-webpack代码中并未实现这步)
 
+---
+总结： webpack-cli主要就是整合相关配置项，并且调用webpack函数
+
+- Webpack工作流程
+1. webpack-cli中```createCompile()```方法调用了webpack工程中lib/webpack.js文件
+2. ```webpack()```内部定义了一个```create()```函数，返回compiler对象
+3. ```create()```调用```createCompile()```函数生成compiler对象
+A: 如果配置项文件是个数组，则会调用createMultiCompile函数
+4. ```createCompile()```函数，返回compile对象
+    1. ```config/getNormalizedWebpackOptions()```格式化相关配置, 这里可以看到webpack具备的全部配置项
+    2. ```config/applyWebpackOptionsBaseDefaults()``` 设置webpack的infrastructureLogging配置选项
+        1. 在配置项中增加'context'属性 = process.cwd(), 
+        2. 调用```applyInfrastructureLoggingDefaults()```函数
+    3. 实例化Compiler对象
+    4. 运行NodeEnvironmentPlugin()
+    5. 依次调用配置项中的Plugins
+    6. ```applyWebpackOptionsDefaults()``` TODO：待确定是什么作用
+    7. 调用environment、afterEnvironment钩子
+    8. 实例化```WebpackOptionsApply()```,调用```procss()```方法，开始打包
+    9. 调用initialize钩子
+5. 在```webpack()```函数中调用```compiler.run()```, 这个时候compiler对象上已经挂载好了全部的plugin
+
+---
+总结： 
+  1. 打包其实就是```compiler```对象执行了```run()```方法
+  2. ```run()```分别依次调用了beforeRun、run、beforeCompiler、Compiler、生成compilation对象、make、finishMake、afterCompiler钩子
+  3. ```run()```执行前，调用了environment、afterEnvironment钩子
+  4. 配置项对应生成一个```compiler```，每次执行```run()```方法就会生成一个新的```compilation```对象
 ## 4. Webpack实战
