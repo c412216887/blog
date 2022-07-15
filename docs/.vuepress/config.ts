@@ -25,6 +25,10 @@ export default defineUserConfig({
         link: "/vue",
       },
       {
+        text: "typescript",
+        link: "/TypeScript",
+      },
+      {
         text: "工程化",
         link: "/engine",
       },
@@ -35,6 +39,18 @@ export default defineUserConfig({
       {
         text: "npm包",
         link: "/third-part",
+      },
+      {
+        text: "数据结构与算法",
+        link: "algorithm",
+      },
+      {
+        text: "vim",
+        link: "/vim",
+      },
+      {
+        text: "demo",
+        link: "/demo",
       },
     ],
     navbar: [

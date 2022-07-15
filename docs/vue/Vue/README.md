@@ -59,6 +59,6 @@
 
 
 ## vite插件
-unplugin-vue-components: 自动引入vue组件
+unplugin-vue-components: 自动引入vue组件;   
 unplugin-auto-import: 自动引入模板里的API
 
