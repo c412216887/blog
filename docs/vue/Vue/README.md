@@ -59,6 +59,25 @@
 
 
 ## vite插件
-unplugin-vue-components: 自动引入vue组件;   
+unplugin-vue-components: 自动引入vue组件;
+```js
+import {defineConfig} from 'vite'
+import components from 'unplugin-vue-components/vite'
+export default defineConfig({
+  plugins: [
+    components({
+      imports: ['vue']
+    })
+  ]
+})
+```   
 unplugin-auto-import: 自动引入模板里的API
-
+```js
+import {defineConfig} from 'vite'
+import AutoImport from 'unplugin-auto-import'
+export default defineConfig({
+  plugins: [
+    AutoImport()
+  ]
+})
+```
