@@ -8,6 +8,8 @@ eslint主要是发现问题(find problems), 自动修复问题(fix automatically
 npx eslint --init
 ```     
 ## 核心概念
+- env: 指定脚本的运行环境。每个环境都有一组特定的预定义的全局变量
+- global: 脚本在执行期间访问的额外的全局变量
 - rule: 规则
 - extends: eslint配置好的rule，这些rule来源为eslint内置规则和引入plugin的相关规则. extends可能是plugin中内置的，也可能是第三方模块依赖
 - plugin: 用户的自定义rule,以及对非js文件的检查
