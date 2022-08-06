@@ -9,7 +9,7 @@
     - outDir: 编译输出的文件夹
     - target: 编译输出，使用的ES版本
     - module: 编译输出，使用的模板规划。只有commmjs、UMD、esnext等
-    - moduleResolution: 代码中模块引入的方案，需要设置为"node" 
+    - moduleResolution: 代码中模块引入的方案，需要设置为"node", module设置为esnext，必须设置这个值。
     - lib: 需要的内置对象, node环境需要手动安装```@types/node```
     - sourceMap: 是否生成map文件
     - declaration: 是否生成.d.ts文件
