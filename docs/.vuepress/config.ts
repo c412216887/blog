@@ -25,6 +25,10 @@ export default defineUserConfig({
         link: "/vue",
       },
       {
+        text: "React",
+        link: "/react",
+      },
+      {
         text: "typescript",
         link: "/TypeScript",
       },
@@ -43,6 +47,10 @@ export default defineUserConfig({
       {
         text: "数据结构与算法",
         link: "algorithm",
+      },
+      {
+        text: "软实力",
+        link: "soft-power",
       },
       {
         text: "vim",

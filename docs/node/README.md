@@ -6,12 +6,20 @@
 
 ## 事件循环
 node的事件循环是基于libuv库
-主程序   
+### 微任务
+process.nextTick()
 Promise    
-setTimeout  
+- process.nextTick()的优先级高于Promise 
+### 宏任务
+主程序   
+setTimeout/setInterval  
 I/O  
 setImmediate  
 - setTimeout最小执行时间为1ms
+
+### MVC
+
+
 ## 模块标准
 根据```package.json```文件中```type```属性，node有两种标准：esm，commonjs。
 commonjs标准，全局注入了module、exports、require、__dirname、__filename
