@@ -61,7 +61,17 @@ function Counter(props) {
 }
 ```
 
+- useLayoutEffect: useEffect的同步版本，<font color="red">可能会存在性能问题</font>
+```js
+function Counter(props) {
+  useLayoutEffect(() => {"doSomething"})
+  return (
+    <div>
 
+    </div>
+  )
+}
+```
 
 - useContext: 函数组件可以获取上下文状态, ,接受```React.createContext()```返回的对象
 ```js
@@ -83,3 +93,8 @@ function Counter(props) {
 }
 ```
 
+
+- useRef: 返回一个可变```Ref```对象, 其```.current```属性被初始化为传入的参数
+```js
+
+```
