@@ -46,11 +46,11 @@ export default defineUserConfig({
       },
       {
         text: "数据结构与算法",
-        link: "algorithm",
+        link: "/algorithm",
       },
       {
         text: "软实力",
-        link: "soft-power",
+        link: "/soft-power",
       },
       {
         text: "vim",

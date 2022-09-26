@@ -16,6 +16,7 @@
     - declarationDir: 生成.d.ts文件的输出目录
     - strict: 是否启动严格模式
     - skipLibCheck: 跳过.d.ts类型检查
+    - resolveJsonModule: 项目中引入json文件则需要将该选项设置为true
 
 ## Q & A
 Q: declare 和 type 有什么区别   
@@ -31,7 +32,7 @@ interface IA {
 }
 type A = (key: string) = > string
 enum B {
-  "men" = 1
+  "men" = 1,
 }
 ```
 
