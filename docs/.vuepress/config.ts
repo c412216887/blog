@@ -1,66 +1,29 @@
+/*
+ * @LastEditors: chenlu chenlu0917boy@163.com
+ * @Date: 2022-07-18 16:58:14
+ * @LastEditTime: 2023-02-18 00:51:41
+ * @FilePath: \blog\docs\.vuepress\config.ts
+ */
 import { defaultTheme, defineUserConfig } from "vuepress";
+import { searchPlugin } from "@vuepress/plugin-search";
+import { copyCodePlugin } from "vuepress-plugin-copy-code2";
 
 export default defineUserConfig({
   lang: "zh-CN",
-  title: "你好， VuePress ！",
-  description: "这是我的第一个 VuePress 站点",
+  title: "你好， 未来的我",
+  description: "记录个人学习资料",
+  head: [
+    [
+      "link",
+      { rel: "reload", href: "https://vuejs.org/images/logo.png", as: "image" },
+    ],
+    ["link", { rel: "icon", href: "https://vuejs.org/images/logo.png" }],
+  ],
   // 默认主题配置
   theme: defaultTheme({
-    // 顶部导航栏
-    sidebar: [
-      {
-        text: "前言",
-        link: "/",
-      },
-      {
-        text: "HTML",
-        link: "/HTML",
-      },
-      {
-        text: "CSS",
-        link: "/CSS",
-      },
-      {
-        text: "Vue",
-        link: "/vue",
-      },
-      {
-        text: "React",
-        link: "/react",
-      },
-      {
-        text: "typescript",
-        link: "/TypeScript",
-      },
-      {
-        text: "工程化",
-        link: "/engine",
-      },
-      {
-        text: "npm应用",
-        link: "/npm",
-      },
-      {
-        text: "npm包",
-        link: "/third-part",
-      },
-      {
-        text: "数据结构与算法",
-        link: "/algorithm",
-      },
-      {
-        text: "软实力",
-        link: "/soft-power",
-      },
-      {
-        text: "vim",
-        link: "/vim",
-      },
-      {
-        text: "demo",
-        link: "/demo",
-      },
-    ],
+    // 侧边栏配置
+    sidebar: "auto",
+    // 顶部导航配置
     navbar: [
       // NavbarItem
       {
@@ -79,4 +42,11 @@ export default defineUserConfig({
     // URL
     logo: "https://vuejs.org/images/logo.png",
   }),
+  plugins: [
+    // 搜索插件
+    searchPlugin({}),
+    copyCodePlugin({
+      showInMobile: true, //是否显示在移动端
+    }),
+  ],
 });
