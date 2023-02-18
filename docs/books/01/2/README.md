@@ -4,9 +4,9 @@
 
 - [使用`<script>`元素](#aa)<span id="a"></span>
 - [行内脚本与外部脚本的比较](#bb)<span id="b"></span>
-- 文档模式对 JavaScript 有什么影响<span id="c"></span>
+- 文档模式对 JavaScript 有什么影响<span id="c"></span>  
   通过`<!DOCTYPE html>`这类 DTD 来定义文档模式，告知浏览器应该用怎样的标准来解析前端代码
-- 确保 JavaScript 不可用时的用户体验<span id="d"></span>
+- 确保 JavaScript 不可用时的用户体验<span id="d"></span>  
   使用`<noscript>`标签，在`<noscript>`中可以使用任何`HTML`标签,`<script>`标签除外
 
 ### `<script>`元素<span id="aa"></span>
@@ -27,6 +27,8 @@
 * type: 可选，代替 language，表示代码块中脚本语言的内容类型（也称 MIME 类型）。如果这个值是`module`，则代码会被当做 ES6 模块，而且只有这时候代码中才能出现`import`和`export`关键字。
 
 - 浏览器会按照`<script>`再页面中出现的顺序依次解释它们，前提是他们没有使用`defer`和`async`属性，第二个`<script>`元素的代码必须在第一个`<script>`元素的代码解释完毕才能开始解释，第三个则必须等第二个解释完，以此类推
+
+引申： ESModule 静态模块，commonjs 动态模块
 
 ### 行内代码与外部文件<span id="bb"></span>
 
