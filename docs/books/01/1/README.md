@@ -1,4 +1,4 @@
-# [JavaScript 高级程序设计](./README.md)
+# [JavaScript 高级程序设计](../README.md)
 
 ## 第一章 什么是 JavaScript
 
@@ -58,14 +58,29 @@ _监听事件是否属于 ECMAScript 部分？_
 - BOM 包含：
 
   - 弹出浏览器新窗口
-  - 移动、缩放和关闭浏览器窗口
+  - 移动、缩放浏览器
+
+  ```js
+  // 移动窗口
+  window.moveTo(x: number, y: number)
+  window.moveBy(x: number, y: number)
+  // 缩放
+  window.resize(width: number, height: number)
+  window.resize(width: number, height: number)
+  ```
+
+  - 从 Firefox 7 开始，不能改变浏览器窗口的大小了，要依据下面的规则才能改变
+
+  1. 只有通过 window.open 创建的窗口或 Tab 才能设置窗口大小和移动窗口。(准确描述是，window.open()必须要有第三个参数)
+  2. 当一个窗口里面含有一个以上的 Tab 时，无法设置窗口的大小和移动窗口。
+  3. 当窗口最大化时，也无法改变或者移动浏览器窗口
+
+  - 关闭浏览器
+    1. 只有通过 window.open 创建的窗口或者 tab 才能关闭浏览器。(window.open()不必要有第三个参数)
   - navigator 对象，提供关于浏览器的详尽信息
   - location 对象，提供浏览器加载页面的详尽信息
   - screen 对象，提供关于用户屏幕分辨率的详尽信息
   - performance 对象，提供浏览器内存占用，导航行为和时间统计的详尽信息
   - 对 cookie 的支持
   - 其他自定义对象，如 XMLHttpRequest
-
-    <button type="button" onclick="window.open('./code/a.md', '\_blank')">演示</button>
-
     [Back](#JavaScript)
