@@ -1,15 +1,5 @@
 # node
 
-# 框架
-
-## [Express](./express/)
-
-## [KOA](./koa/)
-
-## [MongoDB](./mongodb/)
-
-## [nest](./nest/)
-
 ## 用途
 
 1. 前端构建工具
@@ -34,14 +24,6 @@ I/O
 setImmediate
 
 - setTimeout 最小执行时间为 1ms
-
-## MVC 模型
-
-[mvc](./mvc/)
-
-## 数据库
-
-[monogoDB](./mongodb/)
 
 ## node 性能影响点
 
