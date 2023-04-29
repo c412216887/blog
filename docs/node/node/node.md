@@ -106,3 +106,4 @@ const __dirname = path.dirname(__filename);
 - url
 - process
 - util
+  - promisify(fun): 该方法将基于回调的函数转换为基于 `Promise` 的函数

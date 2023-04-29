@@ -14,6 +14,7 @@
 ### [Jest](./engine/Jest/README.md) 
 ### [CI/CD](./engine/CI/ci.md) 
 ### [docker](./engine/docker/docker.md) 
+### [nginx](./engine/nginx/nginx.md) 
 ## HTML & CSS 
 ### [HTML](./HTML/HTML/HTML.md) 
 ### [CSS](./HTML/CSS/CSS.md) 
@@ -36,6 +37,7 @@
 ### [性能](./soft-power/performance/) 
 ### [常见问题](./soft-power/Q%26A/) 
 ### [English](./soft-power/English/) 
+### [yaml](./soft-power/yaml/yaml.md) 
 ## 常见的第三方包 
 ### [commander](./third-part/commander/) 
 ### [tapable](./third-part/tapable/) 

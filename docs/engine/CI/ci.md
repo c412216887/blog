@@ -41,3 +41,5 @@ cd(Continuous Delivery)就是持续交付，可以在持续集成的基础上，
 
 docker 部署流程
 build 打包 -> docker build 生成镜像 -> 运行镜像
+
+## demo
