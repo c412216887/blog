@@ -43,3 +43,8 @@ docker 部署流程
 build 打包 -> docker build 生成镜像 -> 运行镜像
 
 ## demo
+
+Q: 为什么基于 stream 的静态服务器拥有更高的性能  
+A: 基于 stream 降低内存并提升性能
+
+Q:

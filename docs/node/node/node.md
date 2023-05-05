@@ -105,5 +105,10 @@ const __dirname = path.dirname(__filename);
 - http
 - url
 - process
+  - stdin: 获取终端输入
+- stream
+  - pipeline(...stream, cb): 连接多个流
 - util
   - promisify(fun): 该方法将基于回调的函数转换为基于 `Promise` 的函数
+- os 操作系统
+  - networkInterfaces: 获取网络相关
