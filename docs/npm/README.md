@@ -6,4 +6,4 @@
 
 ## lerna
 
-## [pnpm](./pnpm/)
+## [pnpm](./pnpm/pnpm.md)

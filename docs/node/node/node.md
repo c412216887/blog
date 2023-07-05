@@ -1,5 +1,7 @@
 # node
 
+## 概述
+
 ## 用途
 
 1. 前端构建工具
@@ -65,13 +67,14 @@ setImmediate
 ## 模块标准
 
 根据`package.json`文件中`type`属性, 有两个值`module`, `commonjs`，对应 node 两种标准：esm，commonjs。
-commonjs 标准，全局注入了 module、exports、require、**dirname**、**filename**
-esm 标准：
+commonjs 标准，全局注入了 module、exports、require、**dirname**、**filename**,文件拓展名可以是`.cjs`
+esm 标准：文件拓展名可以为`.mjs`
 获取当前文件路径、当前文件夹路径
 
 ```js
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+// 获取当前文件的绝对路径
 const __filename = fileURLToPath(import.meta.url);
 // 获取当前目录的绝对路径
 const __dirname = path.dirname(__filename);
