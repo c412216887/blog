@@ -88,3 +88,5 @@ b === b2; // true
 8. 对象与字符串和数字进行比较，对象中按照优先级调用  
    `[Symbol.toPrimitive]()` > `valueOf()` > `toString()`  
    存在 valueOf 方法，则会直接调用 valueOf 的返回值，要是没有，在调用 toString 的返回值
+
+9. node 和 element 有什么区别

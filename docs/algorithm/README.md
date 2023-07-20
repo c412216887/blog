@@ -1,1 +1,1 @@
-# [数据结构与算法](./algorithm/algorithm.md)
+# [数据结构与算法](./algorithm.md)

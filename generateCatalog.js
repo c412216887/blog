@@ -26,27 +26,8 @@ function generateCatalog(dirnames) {
     if (dirname !== "README.md" && !dirname.startsWith(".")) {
       // 类别文件下面的readme路径
       const classReadmePath = path.join(docDir, "/", dirname, "/readme.md")
-      // 读取文件
-      try {
-        const content = fs.readFileSync(classReadmePath, "utf-8")
-        // 构建目录
-        const titles = content.toString().matchAll(/#(.+?)(\((.+?)\))?\n/g)
-        for (const title of titles) {
-          const catalogName = title[1];
-          if (title[2]) {
-            // 计算出目录相对路径
-            const relativeUrl = title[3];
-            const fullPath = path.join(dirname, relativeUrl).replace(/\\/g, '\/')
-
-            catalog += `##${catalogName}(./${fullPath}) \n`
-          } else {
-            catalog += `##${catalogName} \n`
-          }
-        }
-      } catch (e) {
-        console.error(`----${e.message}----`)
-        return
-      }
+      const relativePath = path.relative("./docs", classReadmePath)
+      catalog += `## [${dirname}](./${relativePath.replaceAll(path.sep, '/')})   \n`
     };
   })
   return catalog
