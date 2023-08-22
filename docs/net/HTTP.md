@@ -34,3 +34,16 @@ message
 - 404 Not found 没有找到相关资源
 - 500 Internal Server Error 服务器错误
 - 503 Server Unavailable 服务器不可用，一般出现在工程正在部署阶段
+
+## HTTP 缓存
+
+### 简介
+
+- 减少请求响应时间，加快页面打开速度
+- 减少服务处理次数，降低服务器请求负担
+
+## HTTP 缓存
+
+发展历史：
+
+- 设置一个时间
