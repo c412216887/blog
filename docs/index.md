@@ -2,32 +2,32 @@
 
 ## [algorithm](./algorithm/)
 
-## [books](./books/readme.md)
+## [books](./books/)
 
-## [demo](./demo/readme.md)
+## [demo](./demo/)
 
-## [engine](./engine/readme.md)
+## [engine](./engine/)
 
-## [HTML](./HTML/readme.md)
+## [HTML](./HTML/)
 
-## [interview](./interview/readme.md)
+## [interview](./interview/)
 
-## [JavaScript](./JavaScript/readme.md)
+## [JavaScript](./JavaScript/)
 
-## [net](./net/readme.md)
+## [net](./net/)
 
-## [node](./node/readme.md)
+## [node](./node/)
 
-## [npm](./npm/readme.md)
+## [npm](./npm/)
 
-## [react](./react/readme.md)
+## [react](./react/)
 
-## [soft-power](./soft-power/readme.md)
+## [soft-power](./soft-power/)
 
-## [third-part](./third-part/readme.md)
+## [third-part](./third-part/)
 
-## [TypeScript](./TypeScript/readme.md)
+## [TypeScript](./TypeScript/)
 
-## [vim](./vim/readme.md)
+## [vim](./vim/)
 
-## [vue](./vue/readme.md)
+## [vue](./vue/)
