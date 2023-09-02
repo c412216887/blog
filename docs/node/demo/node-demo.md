@@ -29,3 +29,7 @@ function isDir(path) {
 ```
 
 ## 批量修改文件名
+
+```js
+fs.rename(oldPath, newPath);
+```

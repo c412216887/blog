@@ -6,7 +6,7 @@
 
 ## [Vite](./vite/vite.md)
 
-## [ESLint](./ESLint/ESLint.md)
+## [ESLint](./eslint/)
 
 ## [Husky](./husky/README.md)
 
