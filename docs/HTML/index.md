@@ -1,5 +1,5 @@
 # HTML & CSS
 
-## [HTML](./HTML/HTML.md)
+## [HTML](./html/)
 
-## [CSS](./CSS/CSS.md)
+## [CSS](./css/)

@@ -1,19 +1,19 @@
 # 工程化
 
-## [Webpack](./Webpack/webpack.md)
+## [Webpack](./webpack/)
 
-## [Rollup](./Rollup/rollup.md)
+## [Rollup](./rollup/)
 
-## [Vite](./vite/vite.md)
+## [Vite](./vite/)
 
 ## [ESLint](./eslint/)
 
-## [Husky](./husky/README.md)
+## [Husky](./husky/)
 
-## [Jest](./Jest/README.md)
+## [Jest](./jest/)
 
-## [CI/CD](./CI/ci.md)
+## [CI/CD](./ci/)
 
-## [docker](./docker/docker.md)
+## [docker](./docker/)
 
-## [nginx](./nginx/nginx.md)
+## [nginx](./nginx/)
