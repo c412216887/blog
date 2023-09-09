@@ -26,9 +26,9 @@
 - compilerOptions  
   _Basic Option_
 
-  - **target: 编译输出，使用的 ES 版本**
-  - **module: 编译输出，使用的模板规划。只有 commmjs、UMD、esnext 等**
-  - **lib: 需要的内置对象, 例如：`esnext`/`dom` node 环境需要手动安装`@types/node`**
+  - **target**: 编译输出，使用的 ES 版本
+  - **module**: 编译输出，使用的模板规划。只有 commmjs、UMD、esnext 等
+  - **lib**: 需要的内置对象, 例如：`esnext`/`dom` node 环境需要手动安装`@types/node`
   - declaration: 每个 ts 文件生成一个`js`文件和一个`.d.ts` 类型文件, declaration 和 allowJs 不能同时设为 true
   - declarationDir: 生成.d.ts 文件的输出目录
   - declarationMap: 生成.d.ts 类型文件的映射文件
@@ -36,7 +36,7 @@
   - outFile: 编译输出的文件
   - outDir: 编译输出的文件夹, 可以指定为 `dist` 文件
   - rootDir: 编译开始的的入口, 一般默认为程序运行的入口文件，不需要特别指定
-  - **isolatedModules: 将 ts 文件当作单独的模块处理，表现为每个文件必须存在导入或者导出**
+  - **isolatedModules**: 将 ts 文件当作单独的模块处理，表现为每个文件必须存在导入或者导出
   - jsx: 针对 jsx 执行相关编译。有效值为`preserve`(保持不变),`react-native`, `react`
   - allowJs: 允许编译 js 文件,不能和 declaration 同时设置为 true
   - checkJs: 检测 JS 的语法
@@ -46,13 +46,15 @@
 
   _Module Resolution Options_
 
-  - **moduleResolution: 代码中模块引入的方案，需要设置为"node"。module 设置为 esnext 时，必须设置这个值。**
-  - **esModuleInterop: commonjs 与 esModule 之间相互引入，允许使用 import 引入使用 exports=导出的内容**
-  - **resolveJsonModule: 项目中引入 json 文件则需要将该选项设置为 true**
+  - **moduleResolution**: 代码中模块引入的方案，需要设置为"node"。module 设置为 esnext 时，必须设置这个值。
+  - **esModuleInterop**: commonjs 与 esModule 之间相互引入，允许使用 import 引入使用 exports=导出的内容
+  - **resolveJsonModule**: 项目中引入 json 文件则需要将该选项设置为 true
+  - allowImportingTsExtensions: 是否允许在模块导入语句中使用 typescript 文件的拓展名(.ts), 一般不修改
+  - noEmit: 用于指示编译器是否应该生成输出文件(将 ts 代码编译为 js 文件，并且输出), 一般不修改
 
   _Advanced Options_
 
-  - **skipLibCheck: 跳过.d.ts 类型检查**
+  - **skipLibCheck**: 跳过.d.ts 类型检查
   - forceConsistentCasingInFileNames: 引入模块的地址与模块的文件名的大小写必须一致
 
   ```js

@@ -22,6 +22,7 @@ npx husky install
 
 ```json
 {
+  "lint": "eslint --ext .ts,.js src/",
   "prepare": "husky install"
 }
 ```
@@ -67,3 +68,17 @@ module.exports = {
   extends: ["@commitlint/config-conventional"],
 };
 ```
+
+## 常用 type
+
+项目工程中，存在 eslint 时，需要将`commitlint.config.js`添加进`tsconfig.json`中
+
+| type     | 描述                                                     |
+| -------- | -------------------------------------------------------- |
+| feat     | 新增功能                                                 |
+| fix      | bug 修复                                                 |
+| style    | 不影响程序逻辑的代码修改（修改空白字符，补全缺失的分号） |
+| refactor | 重构代码（既没有新增功能，也没有修复 bug）               |
+| docs     | 文档更新                                                 |
+| test     | 增加测试                                                 |
+| chore    | 构建过程或辅助工具的变动                                 |

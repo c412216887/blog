@@ -1,4 +1,8 @@
-# rollup
+# Rollup
+
+## 参考资料
+
+[Rollup 打包从 0 到 1](https://juejin.cn/post/7039915279656157198)
 
 ## 概述
 
@@ -18,10 +22,11 @@ Rollup 是一个 JavaScript 模块打包器，可以将多个小的代码片段�
 export defualt {
   input: "", // 必须项
   output: { // 必须项
-    dir: "",
-    file: "",
+    file: "", // 输出文件的绝对地址，包含文件名
     // 必须项, 有效值：amd\cjs\system\es\iife\umd
-    format: ""
+    format: "",
+    // 推荐设置,作为umd和iife格式的全局名称
+    name: ""
   },
   plugins: []
 }
@@ -31,12 +36,15 @@ export defualt {
 
 ## 插件
 
-rollup 插件改变编译的执行过程，且插件的执行顺序是属性`plugins`从前往后。
-举例说明:当中同时存在‘编译 ts’和‘注入相关变量’的插件时，‘注入相关变量’的插件要放到‘编译 ts’的前面
+rollup 插件拓展编译的能力
 
-## 打包 ts 工程
+1. `@rollup/plugin-node-resolve`  
+   rollup 无法识别`node_modules`的模块引入，比如`import answer from 'the-answer'`, 所以需要`resolve`插件解决
+2. `@rollup/plugin-commonjs`  
+   rollup 打包时，只支持 ES6 的模块导入导出方式，即`export/import`,对于`Commonjs`方式导出的包，需要使用`@rollup/plugin-commonjs`
 
-使用 rollup 插件`rollup-plugin-typescript2`。
+3. `rollup-plugin-typescript2`  
+   rollup 不识别`.ts`文件，需要`rollup-plugin-typescript2`，打包时能编译`.ts`文件
 
 ```js
 import ts from "rollup-plugin-typescript2";
@@ -44,15 +52,20 @@ export default {
   // ...  其他rollup配置项
   plugins: [
     ts({
-      tsconfig: "", // 必须项，tsconfig文件的地址
+      tsconfig: "./tsconfig.json", // 必须项，tsconfig文件的地址
     }),
   ],
 };
 ```
 
-## 环境变量注入
+4. `@rollup/plugin-json`  
+   使用`json`插件可以在代码中直接引入`json`文件
 
-使用 rollup 官方插件`@rollup/plugin-replace`。
+5. `rollup-plugin-terser`  
+   该插件可以压缩打包文件
+
+6. `@rollup/plugin-replace`  
+   该插件用来替换变量
 
 ```js
 import replace from "@rollup/plugin-replace";
@@ -60,25 +73,21 @@ export default {
   // ... 其他相关配置
   plugins: [
     replace({
-      values: {},
+      values: {
+        __VERSION__: JSON.stringify(),
+      },
       preventAssignment: true,
     }),
   ],
 };
 ```
 
-## 处理 commonjs 标准的依赖
+为了防止替换过程中，将`sometion = false`替换成`false = false`引发错误，需要将`preventAssignment`设置为`true`
 
-需要同时使用 rollup 官方插件`@rollup/plugin-node-resolve`和`@rollup/plugin-commonjs`
+## 打包
 
-```js
-import resolve from "@rollup/plugin-node-resolve"
-import commonjs from "@rollup/plugin-commonjs"
-export default {
-  // ...其他配置
-  plugins: [
-    resolve()
-    commonjs()
-  ]
-}
+rollup 打包不存在 dev 和 prod,想要区分开发版和生产版本，就只能根据 config 文件来区分
+
+```shell
+rollup -c rollup.config.js
 ```

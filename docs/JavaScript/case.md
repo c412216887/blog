@@ -90,3 +90,8 @@ b === b2; // true
    存在 valueOf 方法，则会直接调用 valueOf 的返回值，要是没有，在调用 toString 的返回值
 
 9. node 和 element 有什么区别
+
+10. target 和 currentTarget 区别
+    在事件委托中(以点击事件为例)
+    target 为点击事件，鼠标点击的子元素
+    currentTarget 为事件绑定的父元素
