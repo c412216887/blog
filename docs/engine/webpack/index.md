@@ -87,7 +87,7 @@ loader 是导出为一个函数的 node 模块。该函数在 loader 转换资�
 
 ---
 
-compiler hook
+compiler hook 本质上是使用发布订阅模式来完成相关 plugin 的功能
 |hook|实现|描述|参数|
 |---|---|---|---|
 |beforeRun|AsyncSeriesHook|-|compiler|
