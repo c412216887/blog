@@ -31,15 +31,22 @@ git describe --tag YY # 距离YY最近的标签
 git fetch # 将代码拉取到origin对应的分支上
 git fetch origin XXX:YYY # 将远程XXX的分支/提交记录拉取到本地YYY分支
 git fetch origin :YYY # 在本地创建一个YYY的分支
+git rm FFF # 删除某个文件
+git add FFF ## 增加文件
+git mv -f [删除文件] [增加的文件]
 ```
 
 ## 常见问题
 
+:::
 "warning: LF will be replaced by CRLF"
-主要是因为 git 的配置项`core.autocrlf`。多平台合作时，因为 Macbook 和 window 的结束符不一致，所以存在这个种选项
-`false`表示取消自动转换功能。适合纯 Windows
-`true`表示提交代码时将 CRLF 转化成 LF，签出时 LF 转换成 CRLF。适合多平台协作
-`input`表示提交时把 CRLF 转换为 LF，签出时不转换，适合纯 Linux 或 Macbook
+:::
+
+- 原因分析
+  主要是因为 git 的配置项`core.autocrlf`。多平台合作时，因为 Macbook 和 window 的结束符不一致，所以存在这个种选项
+  `false`表示取消自动转换功能。适合纯 Windows
+  `true`表示提交代码时将 CRLF 转化成 LF，签出时 LF 转换成 CRLF。适合多平台协作
+  `input`表示提交时把 CRLF 转换为 LF，签出时不转换，适合纯 Linux 或 Macbook
 
 - 最优解法
   设置 core.autocrlf=false,windows 也用 LF 换行
@@ -49,3 +56,29 @@ git config --global core.autocrlf false
 ```
 
 设置一个`.editorconfig`来保证文件都是 LF 结尾
+:::
+github 上文件/文件夹名称大小写跟本地的不一致
+:::
+
+- 原因分析
+  这个行为是由文件系统的不同规则引起的。
+
+  在类 Unix 文件系统（例如 Linux 和 macOS）上，文件名是区分大小写的，  
+  而在 Windows 文件系统上，默认情况下是不区分大小写的。
+
+- 解决方案
+
+1.  使用 git mv 命令修改文件名
+
+```shell
+ git mv -f [删除文件] [留下的文件]
+# 等同于
+ git rm a.js
+ git add A.js
+```
+
+2. 关闭 git 忽略大小写配置
+
+```shell
+git config core.ignorecase false
+```
