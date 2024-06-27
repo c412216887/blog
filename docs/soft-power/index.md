@@ -2,9 +2,7 @@
 
 # 软实力
 
-## [时序图](./sequence)
-
-## [网络](./network/)
+## [时序图](./sequence/)
 
 ## [性能](./performance/)
 

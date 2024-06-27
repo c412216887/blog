@@ -1,4 +1,4 @@
-# [JavaScript 高级程序设计](../README.md)
+# [JavaScript 高级程序设计](../index.md)
 
 ## 第二章 HTML 中的 JavaScript
 

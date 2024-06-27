@@ -82,9 +82,9 @@ const __dirname = path.dirname(__filename);
 
 # node 库
 
-[nest](./nest/)
-[express](./express/)
-[koa](./koa/)
+[nest](../nest/)
+[express](../express/)
+[koa](../koa/)
 
 # node 内置模块
 

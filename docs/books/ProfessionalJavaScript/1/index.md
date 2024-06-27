@@ -1,4 +1,4 @@
-# [JavaScript 高级程序设计](../README.md)
+# [JavaScript 高级程序设计](../index.md)
 
 ## 第一章 什么是 JavaScript
 

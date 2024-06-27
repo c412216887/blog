@@ -1,7 +1,5 @@
 # Log 日志系统
 
-![流程图](../../../public/image/demo/Cgp9HWBccvaAVgUCAAAwlAOAoRg862.png)
-
 ## 手动写入
 
 手动调用写入日志，当缓存长度超过最大或者缓存开关没有开启，则直接写入缓存中

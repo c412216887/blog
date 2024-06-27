@@ -2,13 +2,13 @@
 
 ## [algorithm](./algorithm/)
 
-## [books](./books/)
+## [books](./books/index.md)
 
 ## [demo](./demo/)
 
 ## [engine](./engine/)
 
-## [HTML](./HTML/)
+## [HTML](./html/)
 
 ## [interview](./interview/)
 

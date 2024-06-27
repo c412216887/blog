@@ -1,4 +1,4 @@
-# [JavaScript 高级程序设计](../README.md)
+# [JavaScript 高级程序设计](../index.md)
 
 ## 第三章 语言基础
 
