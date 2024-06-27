@@ -1,5 +1,5 @@
 # VUE 全家桶
 
-## [Vue](./vue/vue.md)
+## [Vue](./vue/)
 
 ## [VuePress](./Vuepress/)
