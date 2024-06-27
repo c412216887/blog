@@ -14,7 +14,7 @@
 
 ## [Jest](./jest/)
 
-## [CI/CD](./ci/)
+## [CI/CD](./ci/index.md)
 
 ## [docker](./docker/)
 

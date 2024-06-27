@@ -8,11 +8,11 @@
 
 ## [engine](./engine/)
 
-## [HTML](./html/)
+## [HTML](./html/index.md)
 
 ## [interview](./interview/)
 
-## [JavaScript](./javascript/)
+## [JavaScript](./javascript/index.md)
 
 ## [net](./net/)
 
@@ -26,7 +26,7 @@
 
 ## [third-part](./third-part/)
 
-## [TypeScript](./typescript/)
+## [TypeScript](./typescript/index.md)
 
 ## [vim](./vim/)
 
