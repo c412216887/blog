@@ -12,7 +12,7 @@
 
 ## [interview](./interview/)
 
-## [JavaScript](./javascript/index.md)
+## [JavaScript](./javaScript/index.md)
 
 ## [net](./net/)
 
@@ -26,7 +26,7 @@
 
 ## [third-part](./third-part/)
 
-## [TypeScript](./typescript/index.md)
+## [TypeScript](./typeScript/index.md)
 
 ## [vim](./vim/)
 
