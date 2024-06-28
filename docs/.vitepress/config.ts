@@ -7,6 +7,7 @@
 import { defineConfig } from "vitepress";
 
 export default defineConfig({
+  base: "/blog/",
   lang: "zh-CN",
   title: "记录个人学习资料",
   description: "记录个人学习资料",
