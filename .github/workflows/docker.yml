@@ -1,0 +1,37 @@
+# 名称
+name: Build Docker Image
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 拉取代码
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - name: Setup Node
+        uses: actions/setup-node@master
+        with:
+          node-version: 20
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm run docs:build
+      - name: Build docker image
+        run: |
+          # 登录阿里云镜像容器服务
+          docker login --username=${{ secrets.DOCKER_USERNAME }} registry.cn-hangzhou.aliyuncs.com --password=${{ secrets.DOCKER_PASSWORD }}
+          # 使用目录中Dockerfile构建镜像
+          docker build -t blog:latest .
+          # 打标签
+          docker tag blog registry.cn-hangzhou.aliyuncs.com/ewan/blog:v1
+          # 推送
+          docker push registry.cn-hangzhou.aliyuncs.com/ewan/blog:v1

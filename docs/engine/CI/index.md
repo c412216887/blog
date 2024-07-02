@@ -12,9 +12,9 @@ ci(Continuous Integration)就是持续集成，当代码仓库代码发生变更
 
 cd(Continuous Delivery)就是持续交付，持续交付是在持续集成的基础上，可以将集成后的代码依次部署到相对应的环境中。
 
-### 配置 GitHub ci action
+### 配置 GitHub CI Action
 
-1. 当想往项目中接入 Github Actions 时，需要在根项目中新建.action/workflows 目录
+1. 当想往项目中接入 Github Actions 时，需要在根项目中新建.github/workflows 目录
 2. 通过编写`yml`文件格式, 定义**Workflow**去实现`CI`。 workflow 相关概念  
    2.1 **Event**(触发事件)：指触发 Workflow 运行的事件  
    2.2 **Job**(作业)： 一个工作流程中包含一个或者多个 Job，这些 Job 默认情况下并行运行，但我们也可以通过设置让其按顺序执行。每个 Job 都在指定的环境(虚拟机或者容器)里开启一个**Runner**(可以理解为一个进程)运行，包含多个**Step**(步骤)。  
@@ -24,11 +24,47 @@ cd(Continuous Delivery)就是持续交付，持续交付是在持续集成的基
 
 ```yml
 # 指定工作流程的名称
-name: learn-github-actions
+name: Deploy VitePress site to Pages
 # 指定此工作流程的触发事件Event
-on: [push]
-# 存放 learn-github-actions工作流程中的所有job
+on:
+  push:
+    branches:
+      - master
 jobs:
+  # 构建工作
+  build:
+    # 运行环境
+    runs-on: ubuntu-latest
+    # 执行步骤
+    steps:
+      # 拉取代码
+      - name: Checkout
+        uses: actions/checkout@master
+      # 安装pnpm， 使用pnpm安装依赖时
+      - name: Setup pnpm
+        uses: pnpm/action-setup@master
+        with:
+          verison: 9
+      # 安装node环境
+      - name: Setup Node
+        uses: actions/setup-node@master
+        with:
+          # node版本
+          node-version: 20
+          # 从工程根目录中文件中获取版本
+          node-version-file: ".node-version"
+          # 缓存pnpm安装的依赖
+          cache: pnpm
+      # 安装依赖
+      - name: Install dependencies
+        run: npm install
+      # 打包
+      - name: Build
+        run: npm run build
+      -
+
+  # 部署工作
+  deploy:
 ```
 
 3. 在 cl.yml 配置相关命令，主要 name, on, job
