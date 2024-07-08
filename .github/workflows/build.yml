@@ -1,0 +1,19 @@
+name: docker 2
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Build docker image
+        run: |
+          docker login --username=${{ secrets.DOCKER_USERNAME }} registry.cn-hangzhou.aliyuncs.com --password=${{ secrets.DOCKER_PASSWORD }}
+          docker build -t blog:latest .
+          docker tag blog registry.cn-hangzhou.aliyuncs.com/ewan/blog:v2
+          docker push registry.cn-hangzhou.aliyuncs.com/ewan/blog:v2

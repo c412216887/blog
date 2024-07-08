@@ -35,6 +35,8 @@ jobs:
   build:
     # 运行环境
     runs-on: ubuntu-latest
+    # 判断条件
+    if: true
     # 执行步骤
     steps:
       # 拉取代码

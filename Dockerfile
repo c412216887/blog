@@ -1,4 +1,8 @@
+FROM node:20
+
 FROM nginx:latest
+
+
 
 COPY ./docs/.vitepress/dist/ /usr/share/nginx/html
 
