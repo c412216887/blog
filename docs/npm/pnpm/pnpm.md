@@ -68,6 +68,7 @@ pnpm install @demo/components -F @demo/main
 import { App } from "@demo/components";
 ```
 
-```
-
-```
+- monorepo 工程中，不存在`pnpm-workspace.yaml`文件
+  :::warning
+  在子包中安装依赖，无法成功
+  :::

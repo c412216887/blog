@@ -1,4 +1,4 @@
-name: docker 2
+name: 全代码拷贝到images
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: false
     steps:
       - name: Checkout
         uses: actions/checkout@master

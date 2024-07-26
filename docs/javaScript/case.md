@@ -68,7 +68,7 @@ String.prototype.substring(start[, end])
 - slice 方法，start 对应的位置 不小于 end 对应的位置时，返回"", substring 方法，start 大于 end 时，start 和 end 互换位置
 
 6. `forEach` 和 `for...of`异同
-   相同点: 可以遍历 Set 和 Array
+   相同点: 可以遍历 Set 和 Array  
    不同点:
 
 - for...of 可以遍历 string
@@ -92,6 +92,14 @@ b === b2; // true
 9. node 和 element 有什么区别
 
 10. target 和 currentTarget 区别
-    在事件委托中(以点击事件为例)
-    target 为点击事件，鼠标点击的子元素
+    在事件委托中(以点击事件为例)  
+    target 为点击事件，鼠标点击的子元素  
     currentTarget 为事件绑定的父元素
+
+11. `defineProperty`直接定义属性，不可枚举，不可配置，不可更改
+
+```js
+const obj = {};
+Object.defineProperty(obj, "key", { value: 123 });
+// 定义的key不可枚举，不可配置，不可更改
+```

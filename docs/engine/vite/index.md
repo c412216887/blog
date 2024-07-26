@@ -4,7 +4,8 @@
 
 ### 默认入口文件
 
-vite 的入口文件默认为根目录下的`index.html`文件。再`index.html`文件种，需要使用`<script>`标签引入 vue 的入口文件
+vite 的入口文件默认为根目录下的`index.html`文件。再`index.html`文件中，需要使用`<script>`标签引入 vue 的入口文件
+-> mode: development, vue 的入口文件，根据`index.html`文件中引入的`.js`文件
 
 ```html
 <!DOCTYPE html>
@@ -55,11 +56,15 @@ unplugin-vue-components: 自动引入 vue 组件, 以`ant-design-vue`为例;
 
 ```js
 import { defineConfig } from "vite";
-import components from "unplugin-vue-components/vite";
-import { AntDesignVueResolver } from "unplugin-vue-components/resolver";
+import Components from "unplugin-vue-components/vite";
+/**
+ * commonjs引用，v0.8以上
+ * const Components = require("nplugin-vue-components/vite").default
+ */
+import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
 export default defineConfig({
   plugins: [
-    components({
+    Components({
       resolvers: [AntDesignVueResolver()],
     }),
   ],
@@ -73,11 +78,20 @@ unplugin-auto-import: 自动引入模板里的 API
 ```js
 import { defineConfig } from "vite";
 import AutoImport from "unplugin-auto-import/vite";
+/**
+ * commonjs引用，v0.8以上
+ * const AutoImport = require("unplugin-auto-import/vite").default
+ */
 export default defineConfig({
   plugins: [
-    AutoImport(
-      imports: ["vue"]
-    )
+    AutoImport({
+      // global imports to register
+      imports: [
+        // presets
+        "vue",
+        "vue-router",
+      ],
+    }),
   ],
 });
 ```

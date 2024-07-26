@@ -12,6 +12,7 @@ docker 是一个应用打包、分发、部署的工具
   `docker images` 查看本地所有镜像  
   `docker run [镜像名称/镜像id]` 运行镜像会自动生成一个容器  
   `docker run -it [镜像名称/镜像id] bash` 运行镜像并且打开终端 bash, `bash`是创建容器后，执行的 CMD，同时会覆盖`Dockerfile`中的`CMD`  
+  `docker run -v [镜像名称/镜像id]`运行镜像中，同时创建数据卷
   `docker run --rm [镜像名称/镜像id]` 容器关闭后自动删除容器  
   `docker rmi [镜像名称/镜像id]` 删除镜像
 
@@ -41,6 +42,28 @@ docker 是一个应用打包、分发、部署的工具
     |RUN|在`docker build`过程中执行|
     |CMD|一个 Dockerfile 只能有一个`CMD`,如果有多个，则只有最后一个`CMD`指令会生效,在`docker run`创建容器|
     |ENTRYPOINT|定义一个可执行的程序或脚本，然后再容器启动时运行这个程序|
+    |EXPORT|暴露端口|
+
+```yml
+FROM nginx:latest
+
+ENV mode=test
+
+ENV APP_HOME /app
+
+# 创建目录并设置工作目录
+RUN mkdir $APP_HOME
+
+WORKDIR $APP_HOME
+
+# 复制应用程序到镜像
+COPY . .
+
+CMD echo "hello, $APP_HOME"
+
+EXPORT 80
+```
+
 - docker-compress
 
 ## `docker run`
@@ -59,3 +82,20 @@ Status: Downloaded newer image for hello-world:latest
 
 Hello from Docker!
 ```
+
+## docker volume(数据卷)
+
+- 特点
+  > 持久性: 数据卷独立于容器的生命周期，容器删除后数据卷任然存在，可以被其他容器挂载和使用
+  > 共享性: 多个容器可以共享一个数据卷，实现数据在容器之间的共享和传递
+  > 数据卷映射宿主机数据: 可以将主机文件系统的目录或者文件挂载为数据卷，容器可以直接访问主机上的数据
+  > 容器之间隔离: 多个容器之间可以共享数据卷，但是，它们之间的操作相互隔离(需要实验)
+  > 高性能: 与将数据存入在容器内部相比，使用数据卷通常具有更高的性能。因为数据卷可以利用宿主机的文件系统
+  > 可备份和恢复: 可以轻松备份和恢复数据卷中的数据，方便进行数据备份和迁移
+
+`docker volume`可以管理 Docker 的数据卷(/var/lib/docker/volumes/xx)  
+`docker volume ls` 查看数据卷  
+`docker volume create [卷名]` 创建一个数据卷  
+`docker volume inspect [卷名]` 查看具体的卷  
+`docker volume rm [卷名]` 删除卷  
+`docker volume prune` 删除无用卷/整理卷，没有被容器使用的数据卷
