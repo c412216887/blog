@@ -1,5 +1,9 @@
 # husky
 
+## 类似依赖
+
+- simple-git-hooks
+
 ## 前置知识
 
 ### git hook
@@ -26,9 +30,9 @@ $your_name
 - 传递参数
   使用`$n`, n 代表一个数字，1 为执行脚本的第一个参数，2 为执行脚本的第二参数  
   |参数处理|说明|
-  |--|--|
+  |--------|------------|
   |$#|传递到脚本的参数个数|
-|$\*||
+  |$\*||
 
 ## 用途
 
@@ -41,14 +45,7 @@ $your_name
 yarn add -D husky
 ```
 
-## 初始化`.husky`文件夹
-
-```shell
-# 初始.husky文件夹
-npx husky install
-```
-
-## 在`package.json`中添加`script`脚本
+> 在`package.json`中添加`script`脚本
 
 ```json
 {
@@ -57,16 +54,40 @@ npx husky install
 }
 ```
 
-## 添加 `git` 钩子
+## 应用
+
+方法一: 初始化`.husky`文件夹
 
 ```shell
+# 初始.husky文件夹
+npx husky install
+# 添加git hook
 npx husky add .husky/pre-commit "npm run lint"
 ```
 
-- 常用 git 钩子
+> 常用 git 钩子
 
-  - pre-commit
-  - commit-msg
+- pre-commit
+- commit-msg
+
+方法二: 在`packages.json`中配置
+
+```json
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "",
+      "commit-msg": ""
+    }
+  }
+}
+```
+
+## 方法二: 在`package.json`中应用 husky
+
+```json
+{}
+```
 
 ## commitlint
 
@@ -99,7 +120,7 @@ module.exports = {
 };
 ```
 
-## 常用 type
+### 常用 type
 
 项目工程中，存在 eslint 时，需要将`commitlint.config.js`添加进`tsconfig.json`中
 
@@ -112,3 +133,5 @@ module.exports = {
 | docs     | 文档更新                                                 |
 | test     | 增加测试                                                 |
 | chore    | 构建过程或辅助工具的变动                                 |
+
+## 自定义`commit-msg`

@@ -10,10 +10,11 @@ docker 是一个应用打包、分发、部署的工具
 - 镜像(image):  
   `docker search [镜像名称]` 搜索 docker 镜像,只能查到镜像名，无法查询到 tag，需要到 hub.docker.com 上面去查询具体的 tag  
   `docker images` 查看本地所有镜像  
-  `docker run [镜像名称/镜像id]` 运行镜像会自动生成一个容器  
+  `docker run [镜像名称/镜像id]` 运行镜像，同时自动生成一个容器  
   `docker run -it [镜像名称/镜像id] bash` 运行镜像并且打开终端 bash, `bash`是创建容器后，执行的 CMD，同时会覆盖`Dockerfile`中的`CMD`  
-  `docker run -v [镜像名称/镜像id]`运行镜像中，同时创建数据卷
-  `docker run --rm [镜像名称/镜像id]` 容器关闭后自动删除容器  
+  `docker run -v [镜像名称/镜像id]`运行镜像，同时创建数据卷
+  `docker run --rm [镜像名称/镜像id]` 容器关闭后自动删除容器
+  `docker run --name [名称] [镜像名称/镜像id]` 运行镜像，同时给镜像命名，如果不命名，系统会分配由两个著名 IT 人物的名称组成的名字
   `docker rmi [镜像名称/镜像id]` 删除镜像
 
 - 容器(container):  
@@ -46,6 +47,8 @@ docker 是一个应用打包、分发、部署的工具
 
 ```yml
 FROM nginx:latest
+
+COPY ./conf.d/nginx.conf /etc/nginx/conf.d/default.conf
 
 ENV mode=test
 

@@ -84,9 +84,165 @@ http { # http区块
 ## linux 中的 nginx
 
 html 页面地址： /usr/share/nginx/html
-nginx.conf 主配置文件地址： /etc/nginx/conf/
+nginx.conf 主配置文件地址： /etc/nginx/conf.d/
 其他配置文件地址： etc/nginx/conf.d/
 
 ## 注意事项
 
-在 linux 中，nginx 其他配置文件，只能增加 server 配置
+在 linux 中，nginx 其他配置文件，只能增加 server 配置  
+:::info
+在 linux 中， nginx 得主要配置文件，在`etc/nginx/nginx.conf`中
+:::
+
+```
+# nginx.conf
+user  nginx;
+worker_processes  auto;
+
+error_log  /var/log/nginx/error.log notice;
+pid        /var/run/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    #gzip  on;
+    # 这里面存放server模块
+    include /etc/nginx/conf.d/*.conf;
+}
+```
+
+## 负载均衡配置
+
+负载均衡的配置主要是在 http 模块中
+
+```
+http {
+  upstream [取一个服务器名称] {
+    server [服务器地址] [权重];
+    server 192.168.0.123:8080 weight=100;
+    server 192.168.0.123:8081 weight=200;
+  }
+  server {
+    listen 80;
+    location / {
+      proxy_pass http://[负载均衡配置时设置的服务器名称]
+    }
+  }
+}
+```
+
+## location 路由匹配规则
+
+```
+location ~.*\.(html/css/js/png)
+```
+
+- `~` 匹配大小写
+- `.`匹配任意字符
+- `*`出现 0 到无数次
+- `\.`转义，匹配`.`
+- `(html|...|js)`代表匹配括号里面任一后缀
+
+## nginx 资源压缩
+
+nginx 提供三个支持资源压缩的模块
+
+- nginx_http_gzip_module 内置模块，可以直接使用
+- nginx_http_gzip_static_module
+- nginx_http_gunzip_module
+
+### nginx_http_gzip_module
+
+| 参数项            | 释义                                    | 参数值                 |
+| ----------------- | --------------------------------------- | ---------------------- |
+| gzip              | 开启或关闭压缩机制                      | on/off                 |
+| gzip_types        | 根据文件类型选择性开启压缩机制          | image/png、text/css    |
+| gzip_comp_level   | 设置压缩级别，级别越高越耗时            | 1~9(越高压缩效果越好)  |
+| gzip_vary         | 设置响应头是否携带 Vary:Accept-Encoding | on/off                 |
+| gzip_buffers      | 设置处理压缩请求的缓存区数量和大小      | 数量大小，如 16 8k     |
+| gzip_disable      | 针对不同客户端的请求来设置是否开始压缩  | \*Chrome\*             |
+| gzip_http_version | 指定压缩响应所需要的最低 http 请求版本  | 1.1                    |
+| gzip_min_length   | 设置触发压缩的文件最低大小              | 512k                   |
+| gzip_proxied      | 对于后端服务器的响应结果是否开启压缩    | off、expired、no-cache |
+
+:::info
+响应头 Vary
+
+- Vary 字面意思时"不一、多样性"
+- Vary 作为响应头，由服务器端返回数据时添加的头部信息
+- Vary 的内容来自当前请求 Request 头的 key，比如 Accept-Encoding、User-Agent 等
+- 缓存服务器对某接口的网络请求结果进行数据缓存时，会将 Vary 一起缓存
+  :::
+
+```
+# http模块
+http {
+  # 开启压缩机制
+  gzip_static on;
+  gzip on;
+  # 指定会被压缩的文件类型
+  gzip_types text/plain application/javascript text/css application/xml text/javascript image/jpeg image/png image/gif;
+  # 设置压缩级别，越高资源消耗越大，但压缩效果越好
+  gzip_comp_level 5;
+  # 在响应头中添加Vary: Accept-Encoding (建议开启)
+  gzip_vary on;
+  # 处理压缩请求的缓冲区数量和大小
+  gzip_buffers 16 8k;
+  # 对于不支持压缩功能的客户端请求不开启压缩机制
+  gzip_disable "MSIE [1-6]\."; # 低版本的IE浏览器不支持压缩
+  # 设置压缩响应所支持的http最低版本
+  gzip_http_version 1.1;
+  # 设置触发压缩的最小阈值
+  gzip_min_length 2k;
+  # 关闭对后端服务器的响应结果进行压缩
+  gzip_proxied off;
+}
+```
+
+:::warning
+想要开启 gzip 压缩，尽可能所有的配置项都配置齐全，至少要配置`gzip`、`gzip_typs`
+:::
+
+## nginx 缓冲区
+
+客户端 -> nginx, nginx-> 服务器，两者之间可能存在网速得差异，nginx 使用缓冲区来缓解网速差异带来的极差的体验感。相当于，在 cpu 和硬盘之间，增加一道内存卡，进行过渡缓存。
+
+## nginx 缓存
+
+提升性能，利用缓存：
+
+- 减少了再次向后端或者文件服务器请求资源的带宽消耗
+- 降低了下游服务器的访问压力，提升系统整体吞吐
+- 缩短响应时间，提升加载速度，打开页面的速度更快
+
+## nginx 黑白名单
+
+`Nginx`做黑白名单机制，主要是通过`allow、deny`配置项来实现
+
+```
+allow xxx.xxx.xxx; # 允许指定的IP访问，可以用于实现白名单
+deny xxx.xxx.xxx; # 禁止指定的IP访问，可以用于实现黑名单
+```
+
+当同时需要允许/禁止多个`IP`访问时，如果所有`IP`全部写在`nginx.conf`文件中，会显得臃肿。可以新建两个文件` BlackIP.conf``WhiteIP.conf `
+
+```
+# BlackIP.conf
+deny 192.177.12.222; # 屏蔽
+```
