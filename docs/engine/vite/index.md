@@ -38,6 +38,34 @@ export default defineConfig({
 
 resolve.alias: 配置别名，别名路径需要绝对路径，不然无法获取正确路径
 
+```js
+// 使用key-value配置别名
+import path from 'node:path'
+import { defineConfig } from 'vite'
+export default defineConfig({
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '../src')
+    }
+  }
+})
+// 使用数组配置别名
+import path from 'node:path'
+
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  resolve: {
+    alias: [
+      {
+        find: '@',
+        replacement: path.resolve(__dirname, '../src')
+      }
+    ]
+  }
+})
+```
+
 ## 使用 css 预处理器
 
 `vite`只需要安装对应预处理器的依赖就行(以`less`为例)
