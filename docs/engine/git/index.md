@@ -27,6 +27,7 @@ git reset # 把分支记录回退几个提交记录，适用于回退本地的�
 git cherry-pick # 挑选几条记录
 git tag xxx YYY # 在YYY提交记录中，打上xxx标签
 git tag -d # 删除tag
+git push origin [标签名] # 将本地标签推送到远程仓库
 git describe --tag YY # 距离YY最近的标签
 git fetch # 将代码拉取到origin对应的分支上
 git fetch origin XXX:YYY # 将远程XXX的分支/提交记录拉取到本地YYY分支
