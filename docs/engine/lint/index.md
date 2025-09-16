@@ -27,7 +27,7 @@ npx eslint --init
 
 ## 核心概念（新，v9.0.0 版本往后）
 
-- 配置文件：ES 模块优先于 commonjs 模块，在工程话配置中优先配置`type: module`
+- 配置文件：ES 模块优先于 commonjs 模块，在工程话配置中优先配置`type: module`; 配置文件使用 Typescript 时，需要安装`jiti`做无缝转 js
   1. 优先级
   - eslint.config.js
   - eslint.config.mjs
